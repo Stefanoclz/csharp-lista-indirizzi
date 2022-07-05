@@ -24,5 +24,10 @@ namespace csharp_lista_indirizzi
             this.province = province;
             this.zip = zip;
         }
+
+        public void AddressStamp()
+        {
+            Console.WriteLine($"Nome: {this.name} | Cognome: {this.surname} | Via: {this.street} | Città: {this.city} | Provincia: {this.province} | Codice ZIP: {this.zip}");
+        }
     }
 }
