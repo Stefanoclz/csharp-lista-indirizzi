@@ -11,11 +11,11 @@ List<string> stringFatteMale = new List<string>();
 
 while (!indirizzi.EndOfStream)
 {
-    /*try
-    {*/
-        string line = indirizzi.ReadLine();
-        Console.WriteLine(line);
-        string[] breakLine = line.Split(",");
+    string line = indirizzi.ReadLine();
+    Console.WriteLine(line);
+    string[] breakLine = line.Split(",");
+    try
+    {
 
         if(breakLine.Length == 6)
         {
@@ -26,23 +26,40 @@ while (!indirizzi.EndOfStream)
             string provincia = breakLine[4];
             string zip = breakLine[5];
 
+            bool good = false;
 
-            Address nuovo = new Address(nome, cognome, strada, citta, provincia, zip);
-            addressesList.Add(nuovo);
+            for(int i = 0; i < breakLine.Length; i++)
+            {
+                if (breakLine[i] == "")
+                {
+                    good = false;
+                    stringFatteMale.Add(line);
+                    break;
+                }
+                else
+                {
+                    good = true;
+                }
+            }
+
+            if (good == true)
+            {
+                Address nuovo = new Address(nome, cognome, strada, citta, provincia, zip);
+                addressesList.Add(nuovo);
+            }
+            
         }
         else
         {
-            string badLine = indirizzi.ReadLine();
-            stringFatteMale.Add(badLine);
+            stringFatteMale.Add(line);
         }
 
 
-    /*}
+    }
     catch (IndexOutOfRangeException)
     {
-        string badLine = indirizzi.ReadLine();
-        stringFatteMale.Add(badLine);
-    }*/
+        stringFatteMale.Add(line);
+    }
 }
 
 Console.WriteLine("*****************************");
