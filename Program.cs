@@ -23,10 +23,26 @@ while (!indirizzi.EndOfStream)
         string citta = breakLine[3];
         string provincia = breakLine[4];
         string zip = breakLine[5];
+        
+        for(int i = 0; i <= breakLine.Length; i++)
+        {
+            string test = breakLine[i];
+            if (test.Length == 0 || test == " ")
+            {
+                string badLine = indirizzi.ReadLine();
+                stringFatteMale.Add(badLine);
+            }
+            else
+            {
+                Address nuovo = new Address(nome, cognome, strada, citta, provincia, zip);
 
-        Address nuovo = new Address(nome, cognome, strada, citta, provincia, zip);
+                addressesList.Add(nuovo);
+                break;
+            }
+        }
 
-        addressesList.Add(nuovo);
+
+        
     }
     catch (IndexOutOfRangeException)
     {
